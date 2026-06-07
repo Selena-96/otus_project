@@ -1,0 +1,26 @@
+@startuml
+title Обмен заказом между 1С и WMS через Kafka (без отмены)
+
+actor "Пользователь 1С" as User
+participant "1С" as OneC
+queue "Kafka\n(orders.1c.to.wms)" as Kafka1
+queue "Kafka\n(orders.wms.to.1c)" as Kafka2
+participant "WMS" as WMS
+
+User -> OneC: Создаёт заказ
+OneC -> OneC: Проведение, формирование OrderCreated
+OneC -> Kafka1: send(OrderCreated)
+Kafka1 -> WMS: OrderCreated
+WMS -> WMS: Резервирование
+WMS -> Kafka2: send(OrderReserved)
+Kafka2 -> OneC: OrderReserved
+OneC -> OneC: Блокировка товара в учёте
+WMS -> WMS: Сборка
+WMS -> Kafka2: send(OrderPicked)
+Kafka2 -> OneC: OrderPicked
+WMS -> WMS: Отгрузка
+WMS -> Kafka2: send(OrderShipped)
+Kafka2 -> OneC: OrderShipped
+OneC -> OneC: Списание товара, закрытие заказа
+OneC -> User: Заказ отгружен
+@enduml

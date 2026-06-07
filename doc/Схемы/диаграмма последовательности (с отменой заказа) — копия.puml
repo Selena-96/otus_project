@@ -1,0 +1,71 @@
+@startuml
+title Обмен заказом с поддержкой отмены из 1С
+
+actor "Пользователь 1С" as User
+participant "1С" as OneC
+queue "Kafka\n(orders.1c.to.wms)" as Kafka1
+queue "Kafka\n(orders.wms.to.1c)" as Kafka2
+participant "WMS" as WMS
+
+== Отмена в статусе RESERVED ==
+
+User -> OneC: Создаёт заказ
+OneC -> Kafka1: send(OrderCreated)
+Kafka1 -> WMS: OrderCreated
+WMS -> WMS: Резервирование
+WMS -> Kafka2: send(OrderReserved)
+Kafka2 -> OneC: OrderReserved
+OneC -> OneC: Блокировка товара в учёте
+
+User -> OneC: Отмена заказа
+OneC -> Kafka1: send(OrderCancel)
+Kafka1 -> WMS: OrderCancel
+WMS -> WMS: Отмена резерва, освобождение товара
+WMS -> Kafka2: send(OrderCancelAccepted)
+Kafka2 -> OneC: OrderCancelAccepted
+OneC -> OneC: Отмена заказа в учёте
+OneC -> User: Заказ отменён
+== Альтернативный сценарий: отмена после сборки ==
+User -> OneC: Создаёт другой заказ (повтор)
+OneC -> Kafka1: send(OrderCreated)
+Kafka1 -> WMS: OrderCreated
+WMS -> WMS: Резервирование
+WMS -> Kafka2: send(OrderReserved)
+Kafka2 -> OneC: OrderReserved
+OneC -> OneC: Блокировка товара в учёте
+WMS -> WMS: Сборка
+WMS -> Kafka2: send(OrderPicked)
+Kafka2 -> OneC: OrderPicked
+User -> OneC: Отмена заказа
+OneC -> Kafka1: send(OrderCancel)
+Kafka1 -> WMS: OrderCancel
+WMS -> WMS: Возврат товара на ячейки
+WMS -> Kafka2: send(OrderCancelAccepted)
+Kafka2 -> OneC: OrderCancelAccepted
+OneC -> OneC: Отмена
+OneC -> User: Заказ отменён после сборки
+
+== Сценарий, когда отмена невозможна (уже отгружено) ==
+User -> OneC: Ещё один заказ
+OneC -> Kafka1: send(OrderCreated)
+Kafka1 -> WMS: OrderCreated
+WMS -> WMS: Резервирование
+WMS -> Kafka2: send(OrderReserved)
+Kafka2 -> OneC: OrderReserved
+OneC -> OneC: Блокировка товара в учёте
+WMS -> WMS: Сборка
+WMS -> Kafka2: send(OrderPicked)
+Kafka2 -> OneC: OrderPicked
+WMS -> WMS: Отгрузка
+WMS -> Kafka2: send(OrderShipped)
+Kafka2 -> OneC: OrderShipped
+OneC -> OneC: Списание
+User -> OneC: Попытка отмены
+OneC -> Kafka1: send(OrderCancel)
+Kafka1 -> WMS: OrderCancel
+WMS -> WMS: Статус = SHIPPED → отмена невозможна
+WMS -> Kafka2: send(OrderCancelRejected)
+Kafka2 -> OneC: OrderCancelRejected
+OneC -> OneC: Оставляет заказ отгруженным
+OneC -> User: Отмена отклонена (уже отгружено)
+@enduml

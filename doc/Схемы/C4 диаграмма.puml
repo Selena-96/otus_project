@@ -1,0 +1,33 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+' LAYOUT_WITH_LEGEND()
+
+title Архитектура 1С
+
+' Системы
+System_Boundary(ЕРП, "1C:ERP") {
+    Container_Boundary(ЕРП_Продажи, "Продажи", ""){
+        Component(ЕРП_ЗаказыКлиента, "Заказ клиента",, "")
+    } 
+}
+
+System_Boundary(ВМС, "WMS") {
+    Container_Boundary(ВМС_Отгрузка, "Отгрузка", ""){
+        Component(ВМС_ЗаказНаОтгрузку, "Заказ на отгрузку",, "")
+    } 
+}
+
+System_Ext(Kafka, "Kafka")  
+
+' Связи
+Rel_D(ЕРП_ЗаказыКлиента, Kafka, "Заказ клиента", "tcp")
+Rel(Kafka, ВМС_ЗаказНаОтгрузку, "Заказ клиента", "tcp")
+Rel_U(Kafka, ЕРП_ЗаказыКлиента, "Статус заказа", "tcp")
+Rel(ВМС_ЗаказНаОтгрузку, Kafka, "Статус заказа", "tcp")
+
+
+
+@enduml

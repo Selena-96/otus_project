@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.18">
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<UseForFoldersAndItems>Items</UseForFoldersAndItems>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<Events>
+		<Event name="ChoiceProcessing">ОбработкаВыбора</Event>
+	</Events>
+	<ChildItems>
+		<InputField name="Код" id="1">
+			<DataPath>Объект.Code</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="КодКонтекстноеМеню" id="2"/>
+			<ExtendedTooltip name="КодРасширеннаяПодсказка" id="3"/>
+		</InputField>
+		<InputField name="Наименование" id="4">
+			<DataPath>Объект.Description</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="НаименованиеКонтекстноеМеню" id="5"/>
+			<ExtendedTooltip name="НаименованиеРасширеннаяПодсказка" id="6"/>
+		</InputField>
+		<CheckBoxField name="Активно" id="7">
+			<DataPath>Объект.Активно</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<CheckBoxType>Auto</CheckBoxType>
+			<ContextMenu name="АктивноКонтекстноеМеню" id="8"/>
+			<ExtendedTooltip name="АктивноРасширеннаяПодсказка" id="9"/>
+		</CheckBoxField>
+		<InputField name="Адрес" id="10">
+			<DataPath>Объект.Адрес</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="АдресКонтекстноеМеню" id="11"/>
+			<ExtendedTooltip name="АдресРасширеннаяПодсказка" id="12"/>
+		</InputField>
+		<InputField name="Логин" id="16">
+			<DataPath>1/0:ad6191a0-db4e-4d7b-b2a3-95261b9e2443</DataPath>
+			<Visible>false</Visible>
+			<EditMode>EnterOnInput</EditMode>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="ЛогинКонтекстноеМеню" id="17"/>
+			<ExtendedTooltip name="ЛогинРасширеннаяПодсказка" id="18"/>
+		</InputField>
+		<InputField name="Пароль" id="19">
+			<DataPath>1/0:a65b3333-eb1b-4cf3-afc2-391af5cf880e</DataPath>
+			<Visible>false</Visible>
+			<EditMode>EnterOnInput</EditMode>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="ПарольКонтекстноеМеню" id="20"/>
+			<ExtendedTooltip name="ПарольРасширеннаяПодсказка" id="21"/>
+		</InputField>
+		<InputField name="ВиртуальныйХост" id="22">
+			<DataPath>1/0:ddc71033-3082-4a8c-8ad9-a17adb00dd38</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="ВиртуальныйХостКонтекстноеМеню" id="23"/>
+			<ExtendedTooltip name="ВиртуальныйХостРасширеннаяПодсказка" id="24"/>
+		</InputField>
+		<InputField name="ТочкаОбмена" id="50">
+			<DataPath>1/0:b3d9444e-0423-4648-a625-2fca1c715313</DataPath>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="ТочкаОбменаКонтекстноеМеню" id="51"/>
+			<ExtendedTooltip name="ТочкаОбменаРасширеннаяПодсказка" id="52"/>
+		</InputField>
+		<InputField name="КлючМаршрутизации" id="56">
+			<DataPath>1/0:757e2b71-d47e-4543-a161-c6fd84f9111d</DataPath>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="КлючМаршрутизацииКонтекстноеМеню" id="57"/>
+			<ExtendedTooltip name="КлючМаршрутизацииРасширеннаяПодсказка" id="58"/>
+		</InputField>
+		<Table name="Состав" id="25">
+			<Representation>List</Representation>
+			<AutoInsertNewRow>true</AutoInsertNewRow>
+			<EnableStartDrag>true</EnableStartDrag>
+			<EnableDrag>true</EnableDrag>
+			<DataPath>Объект.Состав</DataPath>
+			<RowFilter xsi:nil="true"/>
+			<ContextMenu name="СоставКонтекстноеМеню" id="26"/>
+			<AutoCommandBar name="СоставКоманднаяПанель" id="27"/>
+			<ExtendedTooltip name="СоставРасширеннаяПодсказка" id="28"/>
+			<SearchStringAddition name="СоставСтрокаПоиска" id="29">
+				<AdditionSource>
+					<Item>Состав</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="СоставСтрокаПоискаКонтекстноеМеню" id="30"/>
+				<ExtendedTooltip name="СоставСтрокаПоискаРасширеннаяПодсказка" id="31"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="СоставСостояниеПросмотра" id="32">
+				<AdditionSource>
+					<Item>Состав</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="СоставСостояниеПросмотраКонтекстноеМеню" id="33"/>
+				<ExtendedTooltip name="СоставСостояниеПросмотраРасширеннаяПодсказка" id="34"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="СоставУправлениеПоиском" id="35">
+				<AdditionSource>
+					<Item>Состав</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="СоставУправлениеПоискомКонтекстноеМеню" id="36"/>
+				<ExtendedTooltip name="СоставУправлениеПоискомРасширеннаяПодсказка" id="37"/>
+			</SearchControlAddition>
+			<ChildItems>
+				<LabelField name="СоставНомерСтроки" id="38">
+					<DataPath>Объект.Состав.LineNumber</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="СоставНомерСтрокиКонтекстноеМеню" id="39"/>
+					<ExtendedTooltip name="СоставНомерСтрокиРасширеннаяПодсказка" id="40"/>
+				</LabelField>
+				<CheckBoxField name="СоставАктивно" id="41">
+					<DataPath>Объект.Состав.Активно</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="СоставАктивноКонтекстноеМеню" id="42"/>
+					<ExtendedTooltip name="СоставАктивноРасширеннаяПодсказка" id="43"/>
+				</CheckBoxField>
+				<InputField name="СоставНаправлениеОбмена" id="62">
+					<DataPath>Объект.Состав.НаправлениеОбмена</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+					<ContextMenu name="СоставНаправлениеОбменаКонтекстноеМеню" id="63"/>
+					<ExtendedTooltip name="СоставНаправлениеОбменаРасширеннаяПодсказка" id="64"/>
+				</InputField>
+				<InputField name="СоставТипОбъекта" id="44">
+					<DataPath>Объект.Состав.ТипОбъекта</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<DropListButton>false</DropListButton>
+					<ChoiceButton>true</ChoiceButton>
+					<ClearButton>true</ClearButton>
+					<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+					<TextEdit>false</TextEdit>
+					<ContextMenu name="СоставТипОбъектаКонтекстноеМеню" id="45"/>
+					<ExtendedTooltip name="СоставТипОбъектаРасширеннаяПодсказка" id="46"/>
+					<Events>
+						<Event name="StartChoice">СоставТипОбъектаНачалоВыбора</Event>
+						<Event name="ChoiceProcessing">СоставТипОбъектаОбработкаВыбора</Event>
+					</Events>
+				</InputField>
+				<InputField name="СоставУсловиеВыгрузки" id="47">
+					<DataPath>Объект.Состав.УсловиеВыгрузки</DataPath>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Свойства текущего объекта можно получить через "Объект."
+Результат должен быть записан в переменную "Результат" с типом булево</v8:content>
+						</v8:item>
+					</ToolTip>
+					<EditMode>EnterOnInput</EditMode>
+					<MultiLine>true</MultiLine>
+					<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+					<ContextMenu name="СоставУсловиеВыгрузкиКонтекстноеМеню" id="48"/>
+					<ExtendedTooltip name="СоставУсловиеВыгрузкиРасширеннаяПодсказка" id="49"/>
+				</InputField>
+				<InputField name="СоставИмяОчереди" id="59">
+					<DataPath>Объект.Состав.ИмяОчереди</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+					<ContextMenu name="СоставИмяОчередиКонтекстноеМеню" id="60"/>
+					<ExtendedTooltip name="СоставИмяОчередиРасширеннаяПодсказка" id="61"/>
+				</InputField>
+				<InputField name="СоставГруппа" id="65">
+					<DataPath>Объект.Состав.Группа</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+					<ContextMenu name="СоставГруппаКонтекстноеМеню" id="66"/>
+					<ExtendedTooltip name="СоставГруппаРасширеннаяПодсказка" id="67"/>
+				</InputField>
+			</ChildItems>
+		</Table>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Объект" id="1">
+			<Type>
+				<v8:Type>cfg:CatalogObject.otus_Соединения</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+		</Attribute>
+	</Attributes>
+</Form>
